@@ -6,6 +6,11 @@ import org.apache.commons.lang.StringUtils;
 
 public class Util {
 
+	final static String split_1_niv = new String(";-;");
+	final static String split_2_niv = new String(";--;");
+	final static String split_3_niv = new String(";---;");
+	final static String split_4_niv = new String(";-v;");
+	
 	public static String codepoints(String str) {
 		if (str == null)
 			return "";
