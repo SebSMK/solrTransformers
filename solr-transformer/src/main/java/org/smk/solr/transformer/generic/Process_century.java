@@ -1,4 +1,4 @@
-package smk.solr.transformer.generic;
+package org.smk.solr.transformer.generic;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import smk.solr.transformer.generic.Util;
+import org.smk.solr.transformer.generic.Util;
 
 public class Process_century {
 	

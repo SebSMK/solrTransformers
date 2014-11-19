@@ -1,8 +1,8 @@
-package smk.solr.transformer.generic;
+package org.smk.solr.transformer.generic;
 
 import java.util.Map;
 
-import smk.solr.transformer.generic.Util;
+import org.smk.solr.transformer.generic.Util;
 
 import org.apache.commons.lang.StringUtils;
 
