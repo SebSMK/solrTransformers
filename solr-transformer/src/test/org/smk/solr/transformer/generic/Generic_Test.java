@@ -1,14 +1,13 @@
 package org.smk.solr.transformer.generic;
 
-import static org.junit.Assert.*;
-import org.smk.solr.transformer.generic.*;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
+import org.smk.solr.transformer.generic.*;
 
 public class Generic_Test {
 
@@ -83,8 +82,50 @@ public class Generic_Test {
 		Process_multi_works transf = new Process_multi_works();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		String[] multi_works_split = ((String) rowmodif.get("multi_work_ref")).split(Util.split_1_niv);		
-		org.junit.Assert.assertEquals("Udklip på papir med kvindetegnet;--;KKS1984-23/100;--;sibling", multi_works_split[1]);		
+		org.junit.Assert.assertEquals("Udklip på papir med kvindetegnet;--;KKS1984-23/100;--;sibling", multi_works_split[100]);		
 	}
+	
+	@Test
+	public void test_Process_related_works(){
+		Map<String, Object> row = new HashMap();
+		Map<String, Object> rowmodif = new HashMap();
+		String teststring = "Stående Artemis, som støtter venstre arm på arkaistisk Idol;--;KAS382;-;Kvinde, der læner sig til pille under venstre armhule. Afrodite i haverne;--;KAS2349;-;Original til KAS : Afrodite stående lænet til lille arkaistisk statue;--;ORIG40";
+		row.put("related_works_title_dk", teststring);
+		Process_related_works transf = new Process_related_works();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		String orig = ((String) rowmodif.get("related_works_orig_number"));		
+		org.junit.Assert.assertEquals("ORIG40", orig);		
+	}
+	
+	@Test
+	public void test_Process_producents(){
+		Map<String, Object> row = new HashMap();
+		Map<String, Object> rowmodif = new HashMap();
+		String teststring = "person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German;-;person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German";
+		row.put("producents_data", teststring);
+		Process_producents transf = new Process_producents();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		ArrayList<String>  artist_name = ((ArrayList<String> ) rowmodif.get("artist_name"));
+		ArrayList<String>  artist_birth_en = ((ArrayList<String> ) rowmodif.get("artist_birth_en"));
+		ArrayList<String>  artist_birth_dk = ((ArrayList<String> ) rowmodif.get("artist_birth_dk"));
+		ArrayList<String>  artist_death_en = ((ArrayList<String> ) rowmodif.get("artist_death_en"));
+		ArrayList<String>  artist_death_dk = ((ArrayList<String> ) rowmodif.get("artist_death_dk"));
+		ArrayList<String>  artist_natio = ((ArrayList<String> ) rowmodif.get("artist_natio"));
+		ArrayList<String>  artist_natio_en = ((ArrayList<String> ) rowmodif.get("artist_natio_en"));
+		ArrayList<String>  artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));		   		
+		
+		org.junit.Assert.assertEquals("Maria Sibylla Merian", artist_name.get(0));
+		org.junit.Assert.assertEquals("02-04-1647", artist_birth_dk.get(0));
+		org.junit.Assert.assertEquals("1647-04-02", artist_birth_en.get(0));
+		org.junit.Assert.assertEquals("13-01-1717", artist_death_dk.get(0));
+		org.junit.Assert.assertEquals("1717-01-13", artist_death_en.get(0));
+		org.junit.Assert.assertEquals("Tysk", artist_natio.get(0));
+		org.junit.Assert.assertEquals("German", artist_natio_en.get(0));
+		org.junit.Assert.assertEquals("tidl. tilskrevet", artist_auth.get(0));				
+	}
+	
+	
+	
 	
 	
 		

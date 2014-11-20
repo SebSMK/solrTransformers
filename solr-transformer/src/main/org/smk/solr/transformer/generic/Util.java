@@ -4,12 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
-public class Util {
-
-	final static String split_1_niv = new String(";-;");
-	final static String split_2_niv = new String(";--;");
-	final static String split_3_niv = new String(";---;");
-	final static String split_4_niv = new String(";-v;");
+public class Util {	
 	
 	public static String codepoints(String str) {
 		if (str == null)
@@ -26,19 +21,6 @@ public class Util {
 		return StringUtils.join(res, ""); //.replaceAll("/"/g", "");
 	}
 
-	//	      
-	//	      if (!String.capitalize) {  ---> org.apache.stringCapitalize
-	//	      	String.capitalize = function(capitalize ) {
-	//	      		var args = Array.prototype.slice.call(arguments, 0);      		
-	//	      		return (isValidDataText(args.toString())) ? args.toString().charAt(0).toUpperCase() + args.toString().slice(1) : '';      		
-	//	      	};
-	//	      };			 
-	//	 
-
-	public enum dataType {
-		role, agent, date, orga_place, def
-	}
-
 	public static boolean isValidDataText(String text){
 		return isValidDataText(text, "def");
 	}
@@ -48,7 +30,7 @@ public class Util {
 			return false;
 		text = text.toLowerCase();
 
-		dataType field_expr = dataType.valueOf(field);
+		dataType field_expr = dataType.toString(field);
 		switch(field_expr) {
 		case role:
 			if(text == "undefined"
@@ -78,7 +60,7 @@ public class Util {
 			|| text == "(?)")
 				return false;
 			break;
-		case def:
+		case undefined:
 		default:
 			if(text == "undefined" 
 			|| text == "null"
@@ -90,17 +72,14 @@ public class Util {
 
 	/**
 	 * Return true if $data matches a person, not an organisation  
-	 **/
-	public enum producentType {
-		producent, def
-	}
+	 **/		
 	
 	public static boolean isPersonData(String[] personArray){ 
 		return isPersonData(personArray, "def");
 	}  
 	
 	public static boolean isPersonData(String[] personArray, String type){
-		producentType field_expr = producentType.valueOf(type);
+		producentType field_expr = producentType.toString(type);
 
 		switch(field_expr) {
 		case producent:
@@ -109,10 +88,46 @@ public class Util {
 			&& personArray[0] == "person")
 				return true; 
 			break;       
+		case undefined:
 		default:
 			return false;
 		}
 
 		return false;
-	};    
+	};  
+	
+	public final static String split_1_niv = new String(";-;");
+	public final static String split_2_niv = new String(";--;");
+	public final static String split_3_niv = new String(";---;");
+	public final static String split_4_niv = new String(";-v;");
+	
+	static enum producentType {
+		producent, 		
+		undefined;
+		
+		public static producentType toString(String str)
+	    {
+	        try {
+	            return valueOf(str);
+	        } 
+	        catch (Exception ex) {
+	            return undefined;
+	        }
+	    }   
+	}
+	
+	static enum dataType {
+		role, agent, date, orga_place, 		
+		undefined;
+		
+		public static dataType toString(String str)
+	    {
+	        try {
+	            return valueOf(str);
+	        } 
+	        catch (Exception ex) {
+	            return undefined;
+	        }
+	    }   
+	}
 }
