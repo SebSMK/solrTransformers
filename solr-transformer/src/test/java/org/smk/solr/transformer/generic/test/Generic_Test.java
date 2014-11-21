@@ -1,4 +1,4 @@
-package org.smk.solr.transformer.generic;
+package org.smk.solr.transformer.generic.test;
 
 
 import java.util.ArrayList;
