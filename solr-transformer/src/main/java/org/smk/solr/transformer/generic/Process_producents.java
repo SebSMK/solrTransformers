@@ -11,7 +11,10 @@ public class Process_producents{
 	/**
 	 * 
 	 **/            
-	public Object transformRow(Map<String, Object> row) {	
+	public Object transformRow(Map<String, Object> row) {
+		if ((String)row.get("producents_data") == null)
+			return row;
+
 		String[] producents_split = ((String) row.get("producents_data")).split(Util.split_1_niv);                  
 		ArrayList<String> producents_data = new ArrayList<String>();     				
 		int arrayLength = producents_split.length;        
@@ -80,37 +83,37 @@ public class Process_producents{
 
 	}	
 
-	
+
 	/**
-     * Concat artist data 
-     *        
-     * @datas                   artist data  
-     * @all_artists_data        object of arrays (passed by reference)
-     * 
-     * Return: copy concatened artist data in @all_artists_data (passed by reference)                           
-     **/
-    private void concat_artists_data(String[] values, HashMap<String, ArrayList<String>> artists_data) {    			         			      			    	
-		String role = new String(values[1]);
-		String name = new String(values[2]);
-		String birth = new String(values[4]);
-		String birth_en = new String(values[5]);
-		String death = new String(values[7]);
-		String death_en = new String(values[8]);
-		String natio = new String(values[9]);
-		String natio_eng = new String(values[10]);
-        
-        if(Util.isValidDataText(name)){
-            artists_data.get("artist_name").add(name);                                  
-            artists_data.get("artist_auth").add(Util.isValidDataText(role)? role : "original");
-            artists_data.get("artist_birth_dk").add(Util.isValidDataText(birth)? birth : "");            
-            artists_data.get("artist_birth_en").add(Util.isValidDataText(birth_en)? birth_en : "");
-            artists_data.get("artist_death_dk").add(Util.isValidDataText(death)? death : "");
-            artists_data.get("artist_death_en").add(Util.isValidDataText(death_en)? death_en : "");
-            artists_data.get("artist_natio").add(Util.isValidDataText(natio)? natio : "");
-            artists_data.get("artist_natio_en").add(Util.isValidDataText(natio_eng)? natio_eng : "");
-        }        	        
-    }  
-	
+	 * Concat artist data 
+	 *        
+	 * @datas                   artist data  
+	 * @all_artists_data        object of arrays (passed by reference)
+	 * 
+	 * Return: copy concatened artist data in @all_artists_data (passed by reference)                           
+	 **/
+	private void concat_artists_data(String[] values, HashMap<String, ArrayList<String>> artists_data) {    			         			      			    	
+		String role = new String(values[1]).trim();
+		String name = new String(values[2]).trim();
+		String birth = new String(values[4]).trim();
+		String birth_en = new String(values[5]).trim();
+		String death = new String(values[7]).trim();
+		String death_en = new String(values[8]).trim();
+		String natio = new String(values[9]).trim();
+		String natio_eng = new String(values[10]).trim();
+
+		if(Util.isValidDataText(name)){
+			artists_data.get("artist_name").add(name);                                  
+			artists_data.get("artist_auth").add(Util.isValidDataText(role)? role : "original");
+			artists_data.get("artist_birth_dk").add(Util.isValidDataText(birth)? birth : "");            
+			artists_data.get("artist_birth_en").add(Util.isValidDataText(birth_en)? birth_en : "");
+			artists_data.get("artist_death_dk").add(Util.isValidDataText(death)? death : "");
+			artists_data.get("artist_death_en").add(Util.isValidDataText(death_en)? death_en : "");
+			artists_data.get("artist_natio").add(Util.isValidDataText(natio)? natio : "");
+			artists_data.get("artist_natio_en").add(Util.isValidDataText(natio_eng)? natio_eng : "");
+		}        	        
+	}  
+
 	static enum producent_type {
 		trykker, udgiver, forfatterredaktr, undefined;
 

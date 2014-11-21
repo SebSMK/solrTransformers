@@ -14,8 +14,12 @@ public class Process_multi_works{
 	/**
 	 * 
 	 **/            
-	public Object transformRow(Map<String, Object> row) {	
+	public Object transformRow(Map<String, Object> row) {								
+		if ((String)row.get("multi_work_ref") == null)
+			return row;
+
 		String[] multi_works_split = ((String) row.get("multi_work_ref")).split(Util.split_1_niv); 
+
 		Map<Integer, String> multi_works_data = new TreeMap<Integer, String>();  				
 		int arrayLength = multi_works_split.length;
 
