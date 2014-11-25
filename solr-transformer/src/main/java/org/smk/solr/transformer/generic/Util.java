@@ -52,10 +52,14 @@ public class Util {
 		return true;
 	}       
 
+	public static String getValueFromSliced(String[] sliced, int index){		
+		return sliced.length > index ? sliced[index] : null;		
+	}
+	
+	
 	/**
 	 * Return true if $data matches a person, not an organisation  
 	 **/		
-
 	public static boolean isPersonData(String[] personArray){ 
 		return isPersonData(personArray, "def");
 	}  

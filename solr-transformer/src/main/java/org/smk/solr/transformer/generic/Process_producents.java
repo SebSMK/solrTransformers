@@ -4,19 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.smk.solr.transformer.generic.Util;
 
 public class Process_producents{
+
+	protected final static Logger log = Logger .getLogger(Process_producents.class);
 
 	/**
 	 * 
 	 **/            
 	public Object transformRow(Map<String, Object> row) {
+		if(log.isDebugEnabled())
+			log.debug(String.format("--------\r\nstart Process_producents - id:%s", (String) row.get("id")));
+
 		if ((String)row.get("producents_data") == null)
 			return row;
 
-		String[] producents_split = ((String) row.get("producents_data")).split(Util.split_1_niv);                  
-		ArrayList<String> producents_data = new ArrayList<String>();     				
+		String[] producents_split = ((String) row.get("producents_data")).split(Util.split_1_niv);                      				
 		int arrayLength = producents_split.length;        
 
 		ArrayList<String>  artist_name = new ArrayList<String> ();
@@ -78,7 +83,11 @@ public class Process_producents{
 				row.put("artist_auth", artists_data.get("artist_auth"));                         
 		}        
 
-		row.remove("producents_data");  	
+		row.remove("producents_data"); 
+		
+		if(log.isDebugEnabled())
+			log.debug(String.format("finish Process_producents - id:%s\r\n--------------", (String) row.get("id")));
+		
 		return row;		
 
 	}	
@@ -93,14 +102,14 @@ public class Process_producents{
 	 * Return: copy concatened artist data in @all_artists_data (passed by reference)                           
 	 **/
 	private void concat_artists_data(String[] values, HashMap<String, ArrayList<String>> artists_data) {    			         			      			    	
-		String role = new String(values[1]).trim();
-		String name = new String(values[2]).trim();
-		String birth = new String(values[4]).trim();
-		String birth_en = new String(values[5]).trim();
-		String death = new String(values[7]).trim();
-		String death_en = new String(values[8]).trim();
-		String natio = new String(values[9]).trim();
-		String natio_eng = new String(values[10]).trim();
+		String role = Util.getValueFromSliced(values, 1);			
+		String name = Util.getValueFromSliced(values, 2);
+		String birth = Util.getValueFromSliced(values, 4);
+		String birth_en = Util.getValueFromSliced(values, 5);
+		String death = Util.getValueFromSliced(values, 7);
+		String death_en = Util.getValueFromSliced(values, 8);
+		String natio = Util.getValueFromSliced(values, 9);
+		String natio_eng = Util.getValueFromSliced(values, 10);
 
 		if(Util.isValidDataText(name)){
 			artists_data.get("artist_name").add(name);                                  

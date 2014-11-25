@@ -98,6 +98,7 @@ public class Generic_Test {
 		Map<String, Object> rowmodif = new HashMap();
 		String teststring = "person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German;-;person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German";
 		row.put("producents_data", teststring);
+		row.put("id", "KMS1");
 		Process_producents transf = new Process_producents();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		ArrayList<String>  artist_name = ((ArrayList<String> ) rowmodif.get("artist_name"));
@@ -123,6 +124,21 @@ public class Generic_Test {
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));	
 		org.junit.Assert.assertEquals("original", artist_auth.get(0));
+		
+		
+		teststring = "person;--;;--;Günter Brus;--;1938;--;27.september 1938 ;--;27th September 1938 ;--;;--;;--;;--;Østrigsk;--;;-;person;--;forfatter/redaktør;--;Günter Brus;--;1938;--;27.september 1938 ;--;27th September 1938 ;--;;--;;--;;--;Østrigsk;--;";
+		row.put("producents_data", teststring);		
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));	
+		org.junit.Assert.assertEquals("original", artist_auth.get(0));
+		
+		
+		teststring = "person;--;;--;Ubekendt;--;;--;;--;;--;;--;;--;;--;;--;";
+		row.put("producents_data", teststring);		
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));	
+		org.junit.Assert.assertEquals("original", artist_auth.get(0));
+		
 		
 	}
 
