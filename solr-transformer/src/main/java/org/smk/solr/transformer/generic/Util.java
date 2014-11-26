@@ -52,8 +52,8 @@ public class Util {
 		return true;
 	}       
 
-	public static String getValueFromSliced(String[] sliced, int index){		
-		return sliced.length > index ? sliced[index] : null;		
+	public static String getValueFromSplit(String[] splited, int index){		
+		return splited.length > index ? splited[index] : null;		
 	}
 	
 	

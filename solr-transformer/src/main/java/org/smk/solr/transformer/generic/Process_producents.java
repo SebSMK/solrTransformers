@@ -102,14 +102,14 @@ public class Process_producents{
 	 * Return: copy concatened artist data in @all_artists_data (passed by reference)                           
 	 **/
 	private void concat_artists_data(String[] values, HashMap<String, ArrayList<String>> artists_data) {    			         			      			    	
-		String role = Util.getValueFromSliced(values, 1);			
-		String name = Util.getValueFromSliced(values, 2);
-		String birth = Util.getValueFromSliced(values, 4);
-		String birth_en = Util.getValueFromSliced(values, 5);
-		String death = Util.getValueFromSliced(values, 7);
-		String death_en = Util.getValueFromSliced(values, 8);
-		String natio = Util.getValueFromSliced(values, 9);
-		String natio_eng = Util.getValueFromSliced(values, 10);
+		String role = Util.getValueFromSplit(values, 1);			
+		String name = Util.getValueFromSplit(values, 2);
+		String birth = Util.getValueFromSplit(values, 4);
+		String birth_en = Util.getValueFromSplit(values, 5);
+		String death = Util.getValueFromSplit(values, 7);
+		String death_en = Util.getValueFromSplit(values, 8);
+		String natio = Util.getValueFromSplit(values, 9);
+		String natio_eng = Util.getValueFromSplit(values, 10);
 
 		if(Util.isValidDataText(name)){
 			artists_data.get("artist_name").add(name);                                  

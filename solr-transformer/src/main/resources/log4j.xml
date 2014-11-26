@@ -13,7 +13,7 @@
  
    <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
       <param name="Threshold" value="DEBUG" />
-      <param name="File" value="/var/log/solr_transformer.log"/> 	
+      <param name="File" value="/home/seb/log/solr_transformer.log"/> 	
       <param name="DatePattern" value="'.'yyyy-MM-dd"/>
       <param name="Append" value="true"/>      
       <layout class="org.apache.log4j.PatternLayout">

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.smk.solr.transformer.generic.*;
 
@@ -137,14 +136,41 @@ public class Generic_Test {
 		row.put("producents_data", teststring);		
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));	
-		org.junit.Assert.assertEquals("original", artist_auth.get(0));
+		org.junit.Assert.assertEquals("original", artist_auth.get(0));		
+		
+	}
+
+	@Test
+	public void test_Process_titles(){
+		Map<String, Object> row = new HashMap();
+		Map<String, Object> rowmodif = new HashMap();
+		String teststring = "De tyske byers underkastelse;--;Titel oversat fra Veldman (The New Hollstein);--;urn:cspace:smk.dk:vocabularies:name(languages):item:name(dansk)'dansk';--;trans_eng;-v;engelsk;-;The submission of the German cities;--;Eng. titel som hos Veldman (The New Hollstein);--;urn:cspace:smk.dk:vocabularies:name(languages):item:name(engelsk)'engelsk';--;;-v;;-;Kejser Karl V's sejre;--;Titel oversat fra Veldman (The New Hollstein);--;urn:cspace:smk.dk:vocabularies:name(languages):item:name(dansk)'dansk';--;trans_eng;-v;engelsk;-;The victories of Emperor Charles V;--;Eng. titel som hos Veldman (The New Hollstein);--;urn:cspace:smk.dk:vocabularies:name(languages):item:name(engelsk)'engelsk';--;;-v;";
+		row.put("title_all", teststring);
+		Process_titles transf = new Process_titles();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		String title_first = ((String) rowmodif.get("title_first"));		
+		org.junit.Assert.assertEquals("De tyske byers underkastelse", title_first);
+		String title_first_note = ((String) rowmodif.get("title_first_with_note")).split(Util.split_2_niv)[1];		
+		org.junit.Assert.assertEquals("Titel oversat fra Veldman (The New Hollstein)", title_first_note);	
+		String title_eng = ((String) rowmodif.get("title_eng"));		
+		org.junit.Assert.assertEquals("trans_eng", title_eng);	
+		
+		
+		teststring = "Udklip på papir med kvindetegnet;--;;--;urn:cspace:smk.dk:vocabularies:name(languages):item:name(dansk)'dansk';--;";
+		row.put("title_all", teststring);
+		transf = new Process_titles();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		title_first = ((String) rowmodif.get("title_first"));		
+		org.junit.Assert.assertEquals("Udklip på papir med kvindetegnet", title_first);
+	
+		String title_dk = ((String) rowmodif.get("title_dk"));		
+		org.junit.Assert.assertEquals("Udklip på papir med kvindetegnet", title_dk);
+
 		
 		
 	}
 
-
-
-
+	      
 
 
 
