@@ -1,14 +1,20 @@
 package org.smk.solr.transformer.generic;
 
 import java.util.Map;
-import org.smk.solr.transformer.generic.Util;
+
+import org.apache.log4j.Logger;
 
 public class Process_related_works{
 
+	protected final static Logger log = Logger .getLogger(Process_producents.class);
+	
 	/**
 	 * Extract ORIG work of related works
 	 **/            
 	public Object transformRow(Map<String, Object> row) {
+		if(log.isDebugEnabled())
+			log.debug(String.format("--------\r\nstart Process_related_works - id:%s", (String) row.get("id")));
+		
 		if ((String)row.get("related_works_title_dk") == null)
 			return row;
 
@@ -25,6 +31,10 @@ public class Process_related_works{
 			}			
 		}            		
 
+		if(log.isDebugEnabled())
+			log.debug(String.format("finish Process_related_works - id:%s\r\n--------------", (String) row.get("id")));
+
+		
 		return row;
 
 	}	

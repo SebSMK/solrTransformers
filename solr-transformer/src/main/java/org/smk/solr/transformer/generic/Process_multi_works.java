@@ -5,16 +5,20 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.smk.solr.transformer.generic.Util;
-
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 public class Process_multi_works{
 
+	protected final static Logger log = Logger .getLogger(Process_producents.class);
+	
 	/**
 	 * 
 	 **/            
-	public Object transformRow(Map<String, Object> row) {								
+	public Object transformRow(Map<String, Object> row) {										
+		if(log.isDebugEnabled())
+			log.debug(String.format("--------\r\nstart Process_multi_works - id:%s", (String) row.get("id")));
+		
 		if ((String)row.get("multi_work_ref") == null)
 			return row;
 
@@ -43,6 +47,9 @@ public class Process_multi_works{
 			row.put("multi_work_ref", StringUtils.join(multi_work_ref, Util.split_1_niv));			
 		}          
 
+		if(log.isDebugEnabled())
+			log.debug(String.format("finish Process_multi_works - id:%s\r\n--------------", (String) row.get("id")));
+		
 		return row;
 
 	}	

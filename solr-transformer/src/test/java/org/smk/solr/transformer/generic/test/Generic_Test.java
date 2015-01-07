@@ -17,6 +17,14 @@ public class Generic_Test {
 		String res = Util.codepoints(test);
 		org.junit.Assert.assertEquals(res, expected);
 	}
+		
+	@Test
+	public void test_Util_capitalize(){
+		String test = "åben";
+		String expected = "Åben";
+		String res = Util.firstUpper(test);
+		org.junit.Assert.assertEquals(res, expected);
+	}
 
 	@Test
 	public void test_Util_isValidDataText(){

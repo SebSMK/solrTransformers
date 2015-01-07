@@ -24,6 +24,10 @@ public class Util {
 	public static boolean isValidDataText(String text){
 		return isValidDataText(text, null);
 	}
+	
+	public static String firstUpper(String text){
+		return isValidDataText(text) ? text.substring(0, 1).toUpperCase() + text.substring(1) : text;
+	}
 
 	public static boolean isValidDataText(String text, String field){
 		if (text == null
@@ -53,7 +57,7 @@ public class Util {
 	}       
 
 	public static String getValueFromSplit(String[] splited, int index){		
-		return splited.length > index ? splited[index] : null;		
+		return splited.length > index && isValidDataText(splited[index]) ? splited[index] : null;		
 	}
 	
 	
@@ -115,5 +119,5 @@ public class Util {
 				return undefined;
 			}
 		}   
-	}
+	}	
 }

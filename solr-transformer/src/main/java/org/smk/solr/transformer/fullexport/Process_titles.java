@@ -1,4 +1,4 @@
-package org.smk.solr.transformer.generic;
+package org.smk.solr.transformer.fullexport;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
+import org.smk.solr.transformer.generic.Util;
 
 public class Process_titles{
 
@@ -25,8 +26,7 @@ public class Process_titles{
 
 		String[] titles_split = ((String) row.get("title_all")).split(Util.split_1_niv);                      				
 		int arrayLength = titles_split.length;        
-
-		ArrayList<String> titles_data_all_lang_with_notes = new ArrayList<String> ();  	// list of all titles (whatever language is) with associated notes and translations        
+		        
 		String title_data_first = new String();      	// first title in the list (whatever language is)   	
 		String title_dk_with_notes = new String(); 	// first danish title with notes and translations
 		String titles_data_en = new String();					// first english translation for the first title					            		
@@ -70,60 +70,19 @@ public class Process_titles{
 			}            
 
 			if(lang != null && lang.indexOf("dansk") > -1 && title_dk_with_notes.equals("") )
-				title_dk_with_notes = title_orig_with_notes;   							// first danish title with notes and translations			
-
-			titles_data_all_lang_with_notes.add(title_orig_with_notes);
+				title_dk_with_notes = title_orig_with_notes;   							// first danish title with notes and translations						
 
 		}                                                                                                        
 
 		//* copy data back into solr's fields
-		row.put("title_first", Util.getValueFromSplit(title_data_first.split(Util.split_2_niv), 0));             // first title in the list (whatever language is)
-		row.put("title_first_with_note", title_data_first);                        	// first title in the list with notes and translations (whatever language is)         
+		row.put("title_first", Util.getValueFromSplit(title_data_first.split(Util.split_2_niv), 0));             // first title in the list (whatever language is)		         
 
-		if (Util.isValidDataText(title_dk_with_notes)){
-			row.put("title_dk", Util.getValueFromSplit(title_dk_with_notes.split(Util.split_2_niv), 0));  			// first danish title
-			row.put("title_dk_with_note", title_dk_with_notes);              			// first danish title with notes and translations                   
-		} 
+		if (Util.isValidDataText(title_dk_with_notes))
+			row.put("title_dk", Util.getValueFromSplit(title_dk_with_notes.split(Util.split_2_niv), 0));  			// first danish title                   		
 		
 		if (Util.isValidDataText(titles_data_en)) 
 			row.put("title_eng", titles_data_en);                                  // first english title for the first title
-
-		if (titles_data_all_lang_with_notes.size() > 1){    // if there are some alternatives titles...
-			// ...create a json object that contains a list of all alternative titles with their notes          
-			ArrayList<String> arr = new ArrayList<String> ();
-			titles_data_all_lang_with_notes.remove(0);                      // keep only the alternative titles with their notes and translations 
-			for (int i = 0; i < titles_data_all_lang_with_notes.size(); i++) {
-				String[] sub_data = titles_data_all_lang_with_notes.get(i).split(Util.split_2_niv);
-				String title = Util.getValueFromSplit(sub_data, 0);
-				String note = Util.getValueFromSplit(sub_data, 1);
-				String translations = Util.getValueFromSplit(sub_data, 2);                                   
-/*
-				JSONObject mapper = new JSONObject();              
-				if (Util.isValidDataText(title))
-					mapper.put("title", title);
-				if (Util.isValidDataText(note))
-					mapper.put("note", note);
-				if (Util.isValidDataText(translations))
-					mapper.put("translations", translations);
-
-				arr.add(mapper.toString());*/
-				
-				ObjectMapper mapper = new ObjectMapper();
-				ObjectNode rootNode = mapper.createObjectNode();
-				if (Util.isValidDataText(title))
-					rootNode.put("title", title);
-				if (Util.isValidDataText(note))
-					rootNode.put("note", note);
-				if (Util.isValidDataText(translations))
-					rootNode.put("translations", translations);
-
-				arr.add(rootNode.toString());
-			}          
-			row.put("titles_alt_with_notes", arr);                                 // all alternative titles with their notes and translations                     
-		}
-
-		row.remove("title_all");
-		row.remove("title_translate");
+		
 
 		if(log.isDebugEnabled())
 			log.debug(String.format("finish Process_titles - csid:%s\r\n--------------", (String) row.get("csid")));
