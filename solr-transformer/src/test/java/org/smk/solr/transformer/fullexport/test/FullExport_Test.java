@@ -54,10 +54,12 @@ public class FullExport_Test {
 		Map<String, Object> rowmodif = new HashMap();
 		String teststring = "paris;--;udgivelsessted;-;berlin;--;udførelsessted;-;london;--;kouk;-;rome;--;udførelsessted";
 		row.put("object_production_place", teststring);
+		teststring = "udført;--;Efter 1900 ;--;1900-01-01 00:00:00;--;2000-01-01 00:00:00;--;After 1900 ;--;1900-01-01 00:00:00;--;2000-01-01 00:00:00;-;udgivet;--;Ca. 1800 ;--;1798-01-01 00:00:00;--;1802-01-01 00:00:00;--;Circa 1800 ;--;1798-01-01 00:00:00;--;1802-01-01 00:00:00;-;verk datering;--;1588-1590;--;1588-01-01 01:00:00;--;1590-12-31 01:00:00;--;1588-1590;--;1588-01-01 01:00:00;--;1590-12-31 01:00:00";
+		row.put("object_all_production_dates", teststring);				
 		Process_production_place transf = new Process_production_place();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		String udgivet = ((String) rowmodif.get("object_production_place_udgivet"));		
-		org.junit.Assert.assertEquals("paris", udgivet);
+		org.junit.Assert.assertEquals("paris Ca. 1800 ", udgivet);
 		String udfoert = ((String) rowmodif.get("object_production_place_udfoert"));		
 		org.junit.Assert.assertEquals("berlin;-;rome", udfoert);
 	}
