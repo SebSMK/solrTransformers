@@ -1,4 +1,4 @@
-package org.smk.solr.transformer.generic.fullexport;
+package org.smk.solr.transformer.fullexport.test;
 
 import java.util.HashMap;
 import java.util.Map;

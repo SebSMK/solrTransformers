@@ -51,6 +51,8 @@ public class Process_production_place{
 		if (udgivet.size() > 0)        
 			row.put("object_production_place_udfoert", StringUtils.join(udfoert, Util.split_1_niv)); 
 
+		row.remove("object_production_place");
+		
 		if(log.isDebugEnabled())
 			log.debug(String.format("finish Process_production_place - csid:%s\r\n--------------", (String) row.get("csid")));
 
