@@ -43,18 +43,8 @@ public class Process_producents{
 		artists_data.put("artist_auth", artist_auth);
 
 		for(int i = 0; i < arrayLength; i++) {         
-			String[] values = producents_split[i].split(Util.split_2_niv);			         			      		
-			String prod_type = Util.getValueFromSplit(values, 1) != null ? Util.getValueFromSplit(values, 1) : "";
-
-			switch(producent_type.toString(prod_type.replaceAll("[^A-Za-z0-9 ]", ""))) {
-			case trykker:                               
-			case udgiver:                
-			case forfatterredaktr:                                                
-				break;
-
-			default:                
-				concat_artists_data(values, artists_data);                                 
-			} 
+			String[] values = producents_split[i].split(Util.split_2_niv);			         			      			
+			concat_artists_data(values, artists_data);  			
 		}                                                                                                        
 
 		if (artists_data.get("artist_name").size() > 0){

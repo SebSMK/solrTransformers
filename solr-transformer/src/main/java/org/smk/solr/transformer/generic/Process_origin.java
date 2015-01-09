@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-public class Process_related_works{
+public class Process_origin{
 
 	protected final static Logger log = Logger .getLogger(Process_producents.class);
 	
@@ -15,10 +15,10 @@ public class Process_related_works{
 		if(log.isDebugEnabled())
 			log.debug(String.format("--------\r\nstart Process_related_works - id:%s", (String) row.get("id")));
 		
-		if ((String)row.get("related_works_title_dk") == null)
+		if ((String)row.get("related_id") == null)
 			return row;
 
-		String[] related_works_split = ((String) row.get("related_works_title_dk")).split(Util.split_1_niv);  				
+		String[] related_works_split = ((String) row.get("related_id")).split(Util.split_1_niv);  				
 		int arrayLength = related_works_split.length;				
 
 		for(int i = 0; i < arrayLength; i++) {	
@@ -33,7 +33,6 @@ public class Process_related_works{
 
 		if(log.isDebugEnabled())
 			log.debug(String.format("finish Process_related_works - id:%s\r\n--------------", (String) row.get("id")));
-
 		
 		return row;
 

@@ -92,18 +92,19 @@ public class Generic_Test {
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
 		String teststring = "Stående Artemis, som støtter venstre arm på arkaistisk Idol;--;KAS382;-;Kvinde, der læner sig til pille under venstre armhule. Afrodite i haverne;--;KAS2349;-;Original til KAS : Afrodite stående lænet til lille arkaistisk statue;--;ORIG40";
-		row.put("related_works_title_dk", teststring);
-		Process_related_works transf = new Process_related_works();
+		teststring  = "Original til KAS : Abraham giver tiende til Melkisedek i (Jeru-)Salem. Del af predella til altertavle;--;ORIG1;-;Titanernes fald;--;KAStest(KMS1);-;De fire himmelstormere - Ikaros;--;KKSgb1045";
+		row.put("related_id", teststring);
+		Process_origin transf = new Process_origin();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		String orig = ((String) rowmodif.get("related_works_orig_number"));		
-		org.junit.Assert.assertEquals("ORIG40", orig);		
+		org.junit.Assert.assertEquals("ORIG1", orig);		
 	}
 
 	@Test
 	public void test_Process_producents(){
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
-		String teststring = "person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German;-;person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German";
+		String teststring = "person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German;-;person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German";
 		row.put("producents_data", teststring);
 		row.put("id", "KMS1");
 		Process_producents transf = new Process_producents();
