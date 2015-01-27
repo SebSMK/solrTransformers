@@ -3,12 +3,11 @@ package org.smk.solr.transformer.fullexport;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.smk.solr.transformer.generic.Process_producents;
 import org.smk.solr.transformer.generic.Util;
 
 public class Process_capitalize {
 
-	protected final static Logger log = Logger .getLogger(Process_producents.class);
+	protected final static Logger log = Logger .getLogger(Process_capitalize.class);
 	
 	/**
 	 * 
