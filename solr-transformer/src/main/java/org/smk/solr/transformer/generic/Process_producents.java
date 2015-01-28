@@ -101,7 +101,7 @@ public class Process_producents{
 		String natio_eng = Util.getValueFromSplit(values, 10);
 
 		if(Util.isValidDataText(name)){
-			artists_data.get("artist_name").add(name);                                  
+			artists_data.get("artist_name").add(name.trim());                                  
 			artists_data.get("artist_auth").add(Util.isValidDataText(role)? role : "original");
 			artists_data.get("artist_birth_dk").add(Util.isValidDataText(birth)? birth : "");            
 			artists_data.get("artist_birth_en").add(Util.isValidDataText(birth_en)? birth_en : "");

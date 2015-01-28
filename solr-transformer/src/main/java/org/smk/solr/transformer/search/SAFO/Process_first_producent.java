@@ -23,8 +23,8 @@ public class Process_first_producent{
 
 		ArrayList<String> artists = ((ArrayList<String>) row.get("artist_name"));  				
 		
-		if( artists.size() > 0)
-			row.put("artist_first_name", artists.get(0));
+		if( artists.size() > 0 && Util.isValidDataText(artists.get(0)))
+			row.put("artist_first_name", artists.get(0).trim().toUpperCase());
 						
 		if(log.isDebugEnabled())
 			log.debug(String.format("finish Process_first_producent - id:%s\r\n--------------", (String) row.get("id")));

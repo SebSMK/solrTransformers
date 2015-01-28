@@ -15,11 +15,11 @@ public class SAFO_Test {
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
 		ArrayList<String> teststring = new ArrayList<String>();
-		teststring.add("åertrude Markus");
+		teststring.add(" åertrude Markus");
 		teststring.add("aertrude Markus");
 		row.put("artist_name", teststring);
 		Process_first_producent transf = new Process_first_producent();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
-		org.junit.Assert.assertEquals(teststring.get(0), rowmodif.get("artist_first_name"));
+		org.junit.Assert.assertEquals("ÅERTRUDE MARKUS", rowmodif.get("artist_first_name"));
 	}
 }

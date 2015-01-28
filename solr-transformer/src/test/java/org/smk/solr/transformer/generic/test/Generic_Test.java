@@ -104,7 +104,7 @@ public class Generic_Test {
 	public void test_Process_producents(){
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
-		String teststring = "person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German;-;person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German";
+		String teststring = "person;--;tidl. tilskrevet;--; Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German;-;person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German";
 		row.put("producents_data", teststring);
 		row.put("id", "KMS1");
 		Process_producents transf = new Process_producents();
