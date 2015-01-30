@@ -163,53 +163,5 @@ public class FullExport_Test {
 		res = ((String) rowmodif.get("materiale_en"));		
 		org.junit.Assert.assertEquals("canvas;--;bærende underlag (material);-;oil;--;farvelag (medium)", res);
 		
-	}
-
-	@Test
-	public void test_Process_enb_clean_a(){
-		
-		Map<String, Object> row = new HashMap();
-		Map<String, Object> rowmodif = new HashMap();
-		
-		String objectnumber = "KMSa";
-		row.put("objectnumber", objectnumber);
-		String sikkerhedstatus = "ENB-værk";
-		row.put("sikkerhedstatus", sikkerhedstatus);
-		
-		Process_enb_clean transf = new Process_enb_clean();
-		
-		rowmodif = (Map<String, Object>) transf.transformRow(row);
-		
-		/*status should NOT be removed if ENB or NB*/
-		String res = ((String) rowmodif.get("sikkerhedstatus"));
-		org.junit.Assert.assertEquals("ENB-værk", res);
-		
-		res = ((String) rowmodif.get("objectnumber"));		
-		org.junit.Assert.assertEquals("KMSa", res);
-		
-	}
-	
-	@Test
-	public void test_Process_enb_clean_b(){
-		
-		Map<String, Object> row = new HashMap();
-		Map<String, Object> rowmodif = new HashMap();
-		
-		String objectnumber = "KMSa";
-		row.put("objectnumber", objectnumber);
-		String sikkerhedstatus = "Må updeponeres";
-		row.put("sikkerhedstatus", sikkerhedstatus);
-		
-		Process_enb_clean transf = new Process_enb_clean();
-		
-		rowmodif = (Map<String, Object>) transf.transformRow(row);
-		
-		/*status should be removed if not ENB or NB*/
-		String res = ((String) rowmodif.get("sikkerhedstatus"));
-		org.junit.Assert.assertEquals(null, res);
-		
-		/*nothing else should be touched*/
-		res = ((String) rowmodif.get("objectnumber"));
-		org.junit.Assert.assertEquals("KMSa", res);
 	}	
 }
