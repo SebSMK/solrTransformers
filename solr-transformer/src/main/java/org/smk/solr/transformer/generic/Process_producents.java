@@ -38,7 +38,7 @@ public class Process_producents{
 		artists_data.put("artist_birth_dk", artist_birth_dk);
 		artists_data.put("artist_death_en", artist_death_en);
 		artists_data.put("artist_death_dk", artist_death_dk);
-		artists_data.put("artist_natio", artist_natio);
+		artists_data.put("artist_natio_dk", artist_natio);
 		artists_data.put("artist_natio_en", artist_natio_en);
 		artists_data.put("artist_auth", artist_auth);
 
@@ -62,8 +62,8 @@ public class Process_producents{
 			if (artists_data.get("artist_death_dk").size() > 0)        
 				row.put("artist_death_dk", artists_data.get("artist_death_dk"));
 
-			if (artists_data.get("artist_natio").size() > 0)        
-				row.put("artist_natio", artists_data.get("artist_natio"));
+			if (artists_data.get("artist_natio_dk").size() > 0)        
+				row.put("artist_natio_dk", artists_data.get("artist_natio_dk"));
 
 			if (artists_data.get("artist_natio_en").size() > 0)        
 				row.put("artist_natio_en", artists_data.get("artist_natio_en"));
@@ -107,7 +107,7 @@ public class Process_producents{
 			artists_data.get("artist_birth_en").add(Util.isValidDataText(birth_en)? birth_en : "");
 			artists_data.get("artist_death_dk").add(Util.isValidDataText(death)? death : "");
 			artists_data.get("artist_death_en").add(Util.isValidDataText(death_en)? death_en : "");
-			artists_data.get("artist_natio").add(Util.isValidDataText(natio)? natio : "");
+			artists_data.get("artist_natio_dk").add(Util.isValidDataText(natio)? natio : "");
 			artists_data.get("artist_natio_en").add(Util.isValidDataText(natio_eng)? natio_eng : "");
 		}        	        
 	}  

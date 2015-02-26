@@ -114,7 +114,7 @@ public class Generic_Test {
 		ArrayList<String>  artist_birth_dk = ((ArrayList<String> ) rowmodif.get("artist_birth_dk"));
 		ArrayList<String>  artist_death_en = ((ArrayList<String> ) rowmodif.get("artist_death_en"));
 		ArrayList<String>  artist_death_dk = ((ArrayList<String> ) rowmodif.get("artist_death_dk"));
-		ArrayList<String>  artist_natio = ((ArrayList<String> ) rowmodif.get("artist_natio"));
+		ArrayList<String>  artist_natio = ((ArrayList<String> ) rowmodif.get("artist_natio_dk"));
 		ArrayList<String>  artist_natio_en = ((ArrayList<String> ) rowmodif.get("artist_natio_en"));
 		ArrayList<String>  artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));		   		
 
