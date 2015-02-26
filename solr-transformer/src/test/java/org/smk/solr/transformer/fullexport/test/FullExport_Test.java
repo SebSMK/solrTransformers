@@ -162,6 +162,5 @@ public class FullExport_Test {
 		org.junit.Assert.assertEquals("lærred;--;bærende underlag (material);-;olie;--;farvelag (medium)", res);
 		res = ((String) rowmodif.get("materiale_en"));		
 		org.junit.Assert.assertEquals("canvas;--;bærende underlag (material);-;oil;--;farvelag (medium)", res);
-		
 	}
 }
