@@ -17,15 +17,15 @@ public class Enb_Test {
 		
 		String id = "KMSa";
 		row.put("id", id);
-		String sikkerhedstatus = "ENB-værk";
-		row.put("sikkerhedstatus", sikkerhedstatus);
+		String ENBStatus = "ENB-værk";
+		row.put("ENBStatus", ENBStatus);
 		
 		Process_enb_clean transf = new Process_enb_clean();
 		
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		
 		/*status should NOT be removed if ENB or NB*/
-		String res = ((String) rowmodif.get("sikkerhedstatus"));
+		String res = ((String) rowmodif.get("ENBStatus"));
 		org.junit.Assert.assertEquals("ENB-værk", res);
 		
 		res = ((String) rowmodif.get("id"));
@@ -41,15 +41,15 @@ public class Enb_Test {
 		
 		String id = "KMSa";
 		row.put("id", id);
-		String sikkerhedstatus = "Må updeponeres";
-		row.put("sikkerhedstatus", sikkerhedstatus);
+		String ENBStatus = "Må updeponeres";
+		row.put("ENBStatus", ENBStatus);
 		
 		Process_enb_clean transf = new Process_enb_clean();
 		
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		
 		/*status should be removed if not ENB or NB*/
-		String res = ((String) rowmodif.get("sikkerhedstatus"));
+		String res = ((String) rowmodif.get("ENBStatus"));
 		org.junit.Assert.assertEquals(null, res);
 		
 		/*nothing else should be touched*/
