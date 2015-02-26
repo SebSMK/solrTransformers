@@ -18,7 +18,7 @@ public class Enb_Test {
 		String id = "KMSa";
 		row.put("id", id);
 		String ENBStatus = "ENB-værk";
-		row.put("ENBStatus", ENBStatus);
+		row.put("sikkerhedstatus", ENBStatus);
 		
 		Process_enb_clean transf = new Process_enb_clean();
 		
@@ -42,7 +42,7 @@ public class Enb_Test {
 		String id = "KMSa";
 		row.put("id", id);
 		String ENBStatus = "Må updeponeres";
-		row.put("ENBStatus", ENBStatus);
+		row.put("sikkerhedstatus", ENBStatus);
 		
 		Process_enb_clean transf = new Process_enb_clean();
 		

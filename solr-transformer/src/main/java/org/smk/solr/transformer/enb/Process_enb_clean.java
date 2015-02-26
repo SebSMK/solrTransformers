@@ -16,10 +16,15 @@ public class Process_enb_clean {
 		if(log.isDebugEnabled()){
 			log.debug(String.format("--------\r\nstart Process_enb_clean - id:%s", (String) row.get("id")));
 		}
-		String ENBStatus = (String)row.get("ENBStatus");
-		
-		if (ENBStatus != null && !ENBStatus.equals("ENB-værk") && !ENBStatus.equals("NB-værk")){
-			row.remove("ENBStatus");
+		String ENBStatus = (String)row.get("sikkerhedstatus");
+		if(log.isDebugEnabled()){
+			log.debug("ENBStatus: " + ENBStatus);
+		}
+		if (ENBStatus != null && (ENBStatus.equals("ENB-værk") || ENBStatus.equals("NB-værk"))){
+			row.put("ENBStatus", ENBStatus);
+			if(log.isDebugEnabled()){
+				log.debug("remove ENBStatus");
+			}
 		}
 		if(log.isDebugEnabled()){
 			log.debug(String.format("finish Process_enb_clean - id:%s\r\n--------------", (String) row.get("id")));
