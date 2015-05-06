@@ -73,7 +73,7 @@ public class Process_dimensions{
 	 * Concat dimensions data
 	 * */
 	private String concat_dimension_datas(String[] values){
-		String hoj_unit_value = Util.isValidDataText(values[2]) ? values[2] : "(?)";
+		String hoj_unit_value = !Util.getValueFromSplit(values, 2).equals("") ? Util.getValueFromSplit(values, 2) : "(?)";
 		String hoj = Util.getValueFromSplit(values, 1);
 		String hoj_value = Util.isValidDataText(hoj) ? String.format("%s", hoj): "";		
 		String bred = Util.getValueFromSplit(values, 3);

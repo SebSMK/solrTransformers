@@ -23,7 +23,7 @@ public class Process_origin{
 
 		for(int i = 0; i < arrayLength; i++) {	
 			String[] values = related_works_split[i].split(Util.split_2_niv);			         
-			String objectnumber = values.length > 0 ? new String(values[1]) : "";
+			String objectnumber = Util.getValueFromSplit(values, 1);;
 
 			if(objectnumber.toUpperCase().indexOf("ORIG") > -1){
 				row.put("related_works_orig_number", objectnumber);

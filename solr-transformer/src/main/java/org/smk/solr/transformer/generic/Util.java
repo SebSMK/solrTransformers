@@ -57,7 +57,7 @@ public class Util {
 	}       
 
 	public static String getValueFromSplit(String[] splited, int index){		
-		return splited.length > index && isValidDataText(splited[index]) ? splited[index] : null;		
+		return splited.length > index && isValidDataText(splited[index]) ? splited[index] : new String();		
 	}
 	
 	

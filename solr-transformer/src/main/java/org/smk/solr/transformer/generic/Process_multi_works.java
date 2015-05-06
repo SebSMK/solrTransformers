@@ -29,8 +29,8 @@ public class Process_multi_works{
 
 		for(int i = 0; i < arrayLength; i++) {	
 			String[] values = multi_works_split[i].split(Util.split_2_niv);
-			String title = new String(values[0]);          
-			String ref = new String(values[1]);
+			String title = Util.getValueFromSplit(values, 0);          
+			String ref = Util.getValueFromSplit(values, 1);
 			String rank = ref.split("/").length < 2 ? "0" : ref.split("/")[1];  
 			Pattern pattern = Pattern.compile("\\d+");
 			Matcher matcher = pattern.matcher(rank);

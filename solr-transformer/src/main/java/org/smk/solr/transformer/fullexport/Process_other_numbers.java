@@ -36,7 +36,7 @@ public class Process_other_numbers{
 
 		for(int i = 0; i < arrayLength; i++) {         
 			String[] values = oth_numb_split[i].split(Util.split_2_niv);			         			      		
-			String oth_numb_type = new String(values[0]);
+			String oth_numb_type = Util.getValueFromSplit(values, 0);
 			String num = Util.getValueFromSplit(values, 1);
 
 			if(Util.isValidDataText(num)){

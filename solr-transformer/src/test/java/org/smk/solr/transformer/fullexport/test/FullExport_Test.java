@@ -81,6 +81,20 @@ public class FullExport_Test {
 		String udfoert = ((String) rowmodif.get("object_production_date_udfoert"));		
 		org.junit.Assert.assertEquals("Efter 1900 ", udfoert);	
 		
+		row = new HashMap();
+		teststring = ";--;5. århundrede f.Kr.;--;0502-12-31 01:00:00 BC;--;0399-01-01 01:00:00 BC;--;5th century BC";
+		row.put("object_all_production_dates", teststring);
+		transf = new Process_production_date();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		 date = ((String) rowmodif.get("object_production_date"));		
+		org.junit.Assert.assertEquals("5. århundrede f.Kr.", date);
+		 date_en = ((String) rowmodif.get("object_production_date_eng"));		
+		org.junit.Assert.assertEquals("5th century BC", date_en);
+		 udgivet = ((String) rowmodif.get("object_production_date_udgivet"));		
+		org.junit.Assert.assertEquals(null, udgivet);
+		 udfoert = ((String) rowmodif.get("object_production_date_udfoert"));		
+		org.junit.Assert.assertEquals(null, udfoert);	
+		
 	}
 	
 	@Test
@@ -113,6 +127,11 @@ public class FullExport_Test {
 		org.junit.Assert.assertEquals("10 kg", res);
 		res = ((String) rowmodif.get("dimension_diameter"));		
 		org.junit.Assert.assertEquals("20 cm", res);
+		
+		teststring = ";--;;--;;--;;--;;--;;--;;--;;--;;--;;--;";
+		row.put("meas_all", teststring);
+		transf = new Process_dimensions();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);					
 	}
 	
 	@Test
@@ -146,7 +165,15 @@ public class FullExport_Test {
 		res = ((String) rowmodif.get("foto_nr"));		
 		org.junit.Assert.assertEquals("16034", res);
 		res = ((String) rowmodif.get("other_numbers_gernsheim"));		
-		org.junit.Assert.assertEquals("81973", res);
+		org.junit.Assert.assertEquals("81973", res);						
+		
+		row = new HashMap();
+		teststring = "Fotonummer;--;;-;;--;";
+		row.put("other_numbers", teststring);
+		transf = new Process_other_numbers();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		res = ((String) rowmodif.get("foto_nr"));		
+		org.junit.Assert.assertEquals(null, res);				
 	}
 	
 	

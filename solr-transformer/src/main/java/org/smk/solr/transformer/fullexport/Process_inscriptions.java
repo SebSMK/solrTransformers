@@ -35,7 +35,7 @@ public class Process_inscriptions{
 
 		for(int i = 0; i < arrayLength; i++) {         
 			String[] values = inscriptions_split[i].split(Util.split_2_niv);			         			      		
-			String inscription_type = new String(values[0]);
+			String inscription_type = Util.getValueFromSplit(values, 0);
 			String sign = new String();
 			
 			switch(inscriptionsType.toString(inscription_type.replaceAll("[^A-Za-z0-9]", ""))) {
@@ -112,13 +112,13 @@ public class Process_inscriptions{
 	 * Concat inscriptions data
 	 * */
 	private String concat_inscription_data(String[] values){    		          
-		String verso = Util.getValueFromSplit(values, 1) != null && Util.getValueFromSplit(values, 1).equals("t") ? String.format("%s: ", "verso") : "";
-		String placering = Util.getValueFromSplit(values, 2) != null ? String.format("%s", Util.getValueFromSplit(values, 2)) : "";
-		String maade = Util.getValueFromSplit(values, 3) != null ? String.format(": %s", Util.getValueFromSplit(values, 3)) : "";        
-		String indhold = Util.getValueFromSplit(values, 4) != null ? String.format(": %s", Util.getValueFromSplit(values, 4)) : "";
-		String dansk = Util.getValueFromSplit(values, 5) != null? String.format(": %s", Util.getValueFromSplit(values, 5)) : "";
-		String note = Util.getValueFromSplit(values, 6) != null ? String.format(": %s", Util.getValueFromSplit(values, 6)) : "";
-		String datering = Util.getValueFromSplit(values, 7) != null ? String.format(": %s", Util.getValueFromSplit(values, 7)) : "";
+		String verso = !Util.getValueFromSplit(values, 1).equals("") && Util.getValueFromSplit(values, 1).equals("t") ? String.format("%s: ", "verso") : "";
+		String placering = !Util.getValueFromSplit(values, 2).equals("") ? String.format("%s", Util.getValueFromSplit(values, 2)) : "";
+		String maade = !Util.getValueFromSplit(values, 3).equals("") ? String.format(": %s", Util.getValueFromSplit(values, 3)) : "";        
+		String indhold = !Util.getValueFromSplit(values, 4).equals("") ? String.format(": %s", Util.getValueFromSplit(values, 4)) : "";
+		String dansk = !Util.getValueFromSplit(values, 5).equals("")? String.format(": %s", Util.getValueFromSplit(values, 5)) : "";
+		String note = !Util.getValueFromSplit(values, 6).equals("") ? String.format(": %s", Util.getValueFromSplit(values, 6)) : "";
+		String datering = !Util.getValueFromSplit(values, 7).equals("") ? String.format(": %s", Util.getValueFromSplit(values, 7)) : "";
 
 		return  Util.isValidDataText(verso) || 
 				Util.isValidDataText(placering) ||
@@ -144,7 +144,7 @@ public class Process_inscriptions{
 	 * Concat inscriptions data - just inhold
 	 * */
 	private String concat_inscription_data_inhold(String[] values){
-		return  Util.getValueFromSplit(values, 4) != null ? Util.getValueFromSplit(values, 4) : "";                                
+		return  Util.getValueFromSplit(values, 4);                                
 	}      
 
 	static enum inscriptionsType {
