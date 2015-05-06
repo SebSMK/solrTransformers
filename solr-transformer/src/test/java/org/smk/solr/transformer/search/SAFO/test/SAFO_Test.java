@@ -71,6 +71,22 @@ public class SAFO_Test {
 		org.junit.Assert.assertEquals("Paris", (String)res.get(1));						
 	}
 	
+	@Test
+	public void test_Process_vaerkstatus(){
+		Map<String, Object> row = new HashMap();
+		Map<String, Object> rowmodif = new HashMap();
+		String teststring = "delværk;-;forlæg (for)";
+		row.put("vaerkstatus", teststring);
+		Process_vaerkstatus transf = new Process_vaerkstatus();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		ArrayList<String> res = ((ArrayList<String>) rowmodif.get("vaerkstatus"));		
+		org.junit.Assert.assertEquals("delværk", (String)res.get(0));
+		org.junit.Assert.assertEquals("forlæg (for)", (String)res.get(1));						
+	}
+	
+	
+	
+	
 	
 	 
 }
