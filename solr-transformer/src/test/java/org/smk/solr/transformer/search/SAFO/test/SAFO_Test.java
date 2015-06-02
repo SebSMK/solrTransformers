@@ -82,11 +82,5 @@ public class SAFO_Test {
 		ArrayList<String> res = ((ArrayList<String>) rowmodif.get("vaerkstatus"));		
 		org.junit.Assert.assertEquals("delværk", (String)res.get(0));
 		org.junit.Assert.assertEquals("forlæg (for)", (String)res.get(1));						
-	}
-	
-	
-	
-	
-	
-	 
+	} 
 }

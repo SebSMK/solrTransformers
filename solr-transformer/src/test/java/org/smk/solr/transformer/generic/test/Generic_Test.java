@@ -104,7 +104,7 @@ public class Generic_Test {
 	public void test_Process_producents(){
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
-		String teststring = "person;--;tidl. tilskrevet;--; Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German;-;person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German";
+		String teststring = "person;--;tidl. tilskrevet;--; Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German;-;person;--;forfatter/redaktør;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German;--;Capitaine;--;Haddock;--;Jr.";
 		row.put("producents_data", teststring);
 		row.put("id", "KMS1");
 		Process_producents transf = new Process_producents();
@@ -116,7 +116,8 @@ public class Generic_Test {
 		ArrayList<String>  artist_death_dk = ((ArrayList<String> ) rowmodif.get("artist_death_dk"));
 		ArrayList<String>  artist_natio = ((ArrayList<String> ) rowmodif.get("artist_natio_dk"));
 		ArrayList<String>  artist_natio_en = ((ArrayList<String> ) rowmodif.get("artist_natio_en"));
-		ArrayList<String>  artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));		   		
+		ArrayList<String>  artist_auth = ((ArrayList<String> ) rowmodif.get("artist_auth"));
+		ArrayList<String>  artist_surname_firstname = ((ArrayList<String> ) rowmodif.get("artist_surname_firstname"));
 
 		org.junit.Assert.assertEquals("Maria Sibylla Merian", artist_name.get(0));
 		org.junit.Assert.assertEquals("02-04-1647", artist_birth_dk.get(0));
@@ -125,7 +126,8 @@ public class Generic_Test {
 		org.junit.Assert.assertEquals("1717-01-13", artist_death_en.get(0));
 		org.junit.Assert.assertEquals("Tysk", artist_natio.get(0));
 		org.junit.Assert.assertEquals("German", artist_natio_en.get(0));
-		org.junit.Assert.assertEquals("tidl. tilskrevet", artist_auth.get(0));		
+		org.junit.Assert.assertEquals("tidl. tilskrevet", artist_auth.get(0));	
+		org.junit.Assert.assertEquals("Haddock Capitaine", artist_surname_firstname.get(1));	
 		
 		teststring = "person;--;;--;Hans Simon Holtzbecker;--;1620;--;1610-1620;--;1610-1620;--;1671;--;1671;--;1671;--;Tysk;--;German;-;person;--;tidl. tilskrevet;--;Maria Sibylla Merian;--;1647;--;02-04-1647;--;1647-04-02;--;1717;--;13-01-1717;--;1717-01-13;--;Tysk;--;German";
 		row.put("producents_data", teststring);		

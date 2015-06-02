@@ -30,7 +30,8 @@ public class Process_producents{
 		ArrayList<String>  artist_death_dk = new ArrayList<String> ();
 		ArrayList<String>  artist_natio = new ArrayList<String> ();
 		ArrayList<String>  artist_natio_en = new ArrayList<String> ();
-		ArrayList<String>  artist_auth = new ArrayList<String> ();                
+		ArrayList<String>  artist_auth = new ArrayList<String> ();
+		ArrayList<String>  artist_surname_firstname = new ArrayList<String> ();
 
 		HashMap<String, ArrayList<String>> artists_data = new HashMap<String, ArrayList<String>>();
 		artists_data.put("artist_name", artist_name);
@@ -41,6 +42,7 @@ public class Process_producents{
 		artists_data.put("artist_natio_dk", artist_natio);
 		artists_data.put("artist_natio_en", artist_natio_en);
 		artists_data.put("artist_auth", artist_auth);
+		artists_data.put("artist_surname_firstname", artist_surname_firstname);		
 
 		for(int i = 0; i < arrayLength; i++) {         
 			String[] values = producents_split[i].split(Util.split_2_niv);			         			      			
@@ -69,7 +71,10 @@ public class Process_producents{
 				row.put("artist_natio_en", artists_data.get("artist_natio_en"));
 
 			if (artists_data.get("artist_auth").size() > 0)        
-				row.put("artist_auth", artists_data.get("artist_auth"));                         
+				row.put("artist_auth", artists_data.get("artist_auth"));
+			
+			if (artists_data.get("artist_surname_firstname").size() > 0)        
+				row.put("artist_surname_firstname", artists_data.get("artist_surname_firstname"));
 		}        
 
 		row.remove("producents_data"); 
@@ -99,6 +104,8 @@ public class Process_producents{
 		String death_en = Util.getValueFromSplit(values, 8);
 		String natio = Util.getValueFromSplit(values, 9);
 		String natio_eng = Util.getValueFromSplit(values, 10);
+		String forname = Util.getValueFromSplit(values, 11);
+		String surname = Util.getValueFromSplit(values, 12);		
 
 		if(Util.isValidDataText(name)){
 			artists_data.get("artist_name").add(name.trim());                                  
@@ -109,6 +116,7 @@ public class Process_producents{
 			artists_data.get("artist_death_en").add(Util.isValidDataText(death_en)? death_en : "");
 			artists_data.get("artist_natio_dk").add(Util.isValidDataText(natio)? natio : "");
 			artists_data.get("artist_natio_en").add(Util.isValidDataText(natio_eng)? natio_eng : "");
+			artists_data.get("artist_surname_firstname").add(Util.isValidDataText(natio_eng)? String.format("%s %s", surname, forname) : "");
 		}        	        
 	}  
 
