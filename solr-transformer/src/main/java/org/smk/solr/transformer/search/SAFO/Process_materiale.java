@@ -46,11 +46,7 @@ public class Process_materiale{
 		ArrayList<String> materiales_data = new ArrayList<String> ();
 
 		for(int i = 0; i < arrayLength; i++) {         
-			String[] values = materiale_split[i].split(Util.split_2_niv);			         			      					
-			String mat = Util.getValueFromSplit(values, 0);	
-
-			if(Util.isValidDataText(mat))
-				materiales_data.add(mat);			
+			materiales_data.add(materiale_split[i]);			
 		}
 		
 		return materiales_data;

@@ -51,7 +51,11 @@ public class Util {
 		case orga_place:
 			if(text.equals("(?)"))			
 				return false;
-			break;				
+			break;			
+		case materiale:
+			if(text.equals("(blank)"))			
+				return false;
+			break;
 		} 
 		return true;
 	}       
@@ -107,7 +111,7 @@ public class Util {
 	}
 
 	static enum dataType {
-		role, agent, date, orga_place, 		
+		role, agent, date, orga_place, materiale, 		
 		undefined;
 
 		public static dataType toString(String str)

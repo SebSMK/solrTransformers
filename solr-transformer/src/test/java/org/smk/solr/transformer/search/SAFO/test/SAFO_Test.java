@@ -24,16 +24,35 @@ public class SAFO_Test {
 	}
 	
 	@Test
+	public void test_Process_part_nr(){
+		Map<String, Object> row = new HashMap();
+		Map<String, Object> rowmodif = new HashMap();
+		String teststring = "kms1/5";
+		row.put("id", teststring);
+		Process_part_nr transf = new Process_part_nr();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		org.junit.Assert.assertEquals(5, rowmodif.get("part_nr"));
+		
+		row = new HashMap();
+		rowmodif = new HashMap();
+		teststring = "kms1";
+		row.put("id", teststring);
+		transf = new Process_part_nr();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		org.junit.Assert.assertNull(rowmodif.get("part_nr"));
+	}
+	
+	@Test
 	public void test_Process_materiale(){
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
-		String teststring = "lærred;--;bærende underlag (material);-;olie;--;farvelag (medium);-;papir;--;farvelag (medium)";
+		String teststring = "lærred;--;bærende underlag (material);-;olie;--;farvelag (medium);-;papir;--;farvelag (medium)";		
 		row.put("materiale", teststring);
 		Process_materiale transf = new Process_materiale();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		ArrayList<String> res = ((ArrayList<String>) rowmodif.get("materiale"));		
-		org.junit.Assert.assertEquals("lærred", (String)res.get(0));
-		org.junit.Assert.assertEquals("olie", (String)res.get(1));
+		org.junit.Assert.assertEquals("lærred;--;bærende underlag (material)", (String)res.get(0));
+		org.junit.Assert.assertEquals("olie;--;farvelag (medium)", (String)res.get(1));
 		
 		row = new HashMap();
 		teststring = "lærred;--;bærende underlag (material);-;olie;--;farvelag (medium)";
@@ -41,8 +60,8 @@ public class SAFO_Test {
 		transf = new Process_materiale();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		res = ((ArrayList<String>) rowmodif.get("materiale_en"));		
-		org.junit.Assert.assertEquals("lærred", (String)res.get(0));
-		org.junit.Assert.assertEquals("olie", (String)res.get(1));		
+		org.junit.Assert.assertEquals("lærred;--;bærende underlag (material)", (String)res.get(0));
+		org.junit.Assert.assertEquals("olie;--;farvelag (medium)", (String)res.get(1));		
 	}
 	
 	@Test
