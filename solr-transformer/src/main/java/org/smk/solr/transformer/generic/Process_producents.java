@@ -116,7 +116,7 @@ public class Process_producents{
 			artists_data.get("artist_death_en").add(Util.isValidDataText(death_en)? death_en : "");
 			artists_data.get("artist_natio_dk").add(Util.isValidDataText(natio)? natio : "");
 			artists_data.get("artist_natio_en").add(Util.isValidDataText(natio_eng)? natio_eng : "");
-			artists_data.get("artist_surname_firstname").add(Util.isValidDataText(natio_eng)? String.format("%s %s", surname, forname) : "");
+			artists_data.get("artist_surname_firstname").add(Util.isValidDataText(surname) || Util.isValidDataText(forname)? String.format("%s %s", surname, forname) : "");
 		}        	        
 	}  
 

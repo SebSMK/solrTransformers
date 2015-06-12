@@ -68,13 +68,17 @@ public class SAFO_Test {
 	public void test_Process_portrait(){
 		Map<String, Object> row = new HashMap();
 		Map<String, Object> rowmodif = new HashMap();
-		String teststring = "Christian VI;-;Sophie Magdalene";
+		String teststring = "Christian VI;--;;--;Christian VI;-;Adolph Hans Holsten;--;Adolph Hans;--;Holsten;--;";
 		row.put("portrait_person", teststring);
 		Process_portrait transf = new Process_portrait();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
-		ArrayList<String> res = ((ArrayList<String>) rowmodif.get("portrait_person"));		
-		org.junit.Assert.assertEquals("Christian VI", (String)res.get(0));
-		org.junit.Assert.assertEquals("Sophie Magdalene", (String)res.get(1));						
+		ArrayList<String> portrait_person = ((ArrayList<String>) rowmodif.get("portrait_person"));		
+		org.junit.Assert.assertEquals("Christian VI", (String)portrait_person.get(0));
+		org.junit.Assert.assertEquals("Adolph Hans Holsten", (String)portrait_person.get(1));
+		
+		ArrayList<String> portrait_person_surname = ((ArrayList<String>) rowmodif.get("portrait_surname_firstname"));		
+		org.junit.Assert.assertEquals("Christian VI ", (String)portrait_person_surname.get(0));
+		org.junit.Assert.assertEquals("Holsten Adolph Hans", (String)portrait_person_surname.get(1));	
 	}
 	
 	@Test
