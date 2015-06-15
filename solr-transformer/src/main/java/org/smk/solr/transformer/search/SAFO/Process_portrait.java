@@ -42,7 +42,7 @@ public class Process_portrait{
 				row.put("portrait_person", portraits_data.get("portrait_name"));
 
 				if (portraits_data.get("portrait_surname_firstname").size() > 0)        
-					row.put("portrait_surname_firstname", portraits_data.get("portrait_surname_firstname"));
+					row.put("portrait_person_surname_firstname", portraits_data.get("portrait_surname_firstname"));
 			}						
 		}											 
 
