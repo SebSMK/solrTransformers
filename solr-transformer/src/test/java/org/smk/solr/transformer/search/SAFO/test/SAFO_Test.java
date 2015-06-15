@@ -40,6 +40,14 @@ public class SAFO_Test {
 		transf = new Process_part_nr();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		org.junit.Assert.assertNull(rowmodif.get("part_nr"));
+		
+		row = new HashMap();
+		rowmodif = new HashMap();
+		teststring = "kms1/3 verso";
+		row.put("id", teststring);
+		transf = new Process_part_nr();
+		rowmodif = (Map<String, Object>) transf.transformRow(row);
+		org.junit.Assert.assertEquals(3, rowmodif.get("part_nr"));
 	}
 	
 	@Test
@@ -76,7 +84,7 @@ public class SAFO_Test {
 		org.junit.Assert.assertEquals("Christian VI", (String)portrait_person.get(0));
 		org.junit.Assert.assertEquals("Adolph Hans Holsten", (String)portrait_person.get(1));
 		
-		ArrayList<String> portrait_person_surname = ((ArrayList<String>) rowmodif.get("portrait_surname_firstname"));		
+		ArrayList<String> portrait_person_surname = ((ArrayList<String>) rowmodif.get("portrait_person_surname_firstname"));		
 		org.junit.Assert.assertEquals("Christian VI ", (String)portrait_person_surname.get(0));
 		org.junit.Assert.assertEquals("Holsten Adolph Hans", (String)portrait_person_surname.get(1));	
 	}

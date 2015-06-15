@@ -24,7 +24,7 @@ public class Process_part_nr{
 		// get second part of id (after "/")
 		String rank = id.split("/").length < 2 ? "0" : id.split("/")[1];
 		// remove all non numeric char (e.g. "verso")
-		rank.replaceAll("[^\\d.]", "");
+		rank = rank.replaceAll("\\D+", "");
 		
 		if (rank != "0")			
 			row.put("part_nr", Integer.parseInt(rank));					
