@@ -98,10 +98,10 @@ public class Process_production_place{
 			}
 		}
 
-		if (udfoert.size() > 0)        
+		if (udgivet.size() > 0)        
 			row.put("object_production_place_udgivet", StringUtils.join(udgivet, Util.split_1_niv)); 
 
-		if (udgivet.size() > 0)        
+		if (udfoert.size() > 0)        
 			row.put("object_production_place_udfoert", StringUtils.join(udfoert, Util.split_1_niv)); 
 
 		row.remove("object_production_place");
