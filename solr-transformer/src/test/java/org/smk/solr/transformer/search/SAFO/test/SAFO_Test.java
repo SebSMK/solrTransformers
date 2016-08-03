@@ -18,9 +18,14 @@ public class SAFO_Test {
 		teststring.add(" åertrude Markus");
 		teststring.add("aertrude Markus");
 		row.put("artist_name", teststring);
+		teststring = new ArrayList<String>();
+		teststring.add(" Markus åertrude");
+		teststring.add("Markus aertrude ");
+		row.put("artist_surname_firstname", teststring);
 		Process_first_producent transf = new Process_first_producent();
 		rowmodif = (Map<String, Object>) transf.transformRow(row);
 		org.junit.Assert.assertEquals("ÅERTRUDE MARKUS", rowmodif.get("artist_first_name"));
+		org.junit.Assert.assertEquals("MARKUS ÅERTRUDE", rowmodif.get("artist_first_surname_firstname"));		
 	}
 	
 	@Test

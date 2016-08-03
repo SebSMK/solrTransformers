@@ -6,7 +6,7 @@ The host, path and transformer names shown below are just examples, and will of 
 
 1. Build the jar (note that the path is not the project root)
 
-		$ cd git/solrTransformers/solr-transformer
+		$ cd git/solrTransformers-luna/solr-transformer
 		$ mvn install
 
 2. Copy the jar to solr

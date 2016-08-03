@@ -25,6 +25,11 @@ public class Process_first_producent{
 		
 		if( artists.size() > 0 && Util.isValidDataText(artists.get(0)))
 			row.put("artist_first_name", artists.get(0).trim().toUpperCase());
+		
+		ArrayList<String> artists_firstname_first = ((ArrayList<String>) row.get("artist_surname_firstname"));  				
+		
+		if( artists_firstname_first.size() > 0 && Util.isValidDataText(artists_firstname_first.get(0)))
+			row.put("artist_first_surname_firstname", artists_firstname_first.get(0).trim().toUpperCase());
 						
 		if(log.isDebugEnabled())
 			log.debug(String.format("finish Process_first_producent - id:%s\r\n--------------", (String) row.get("id")));
